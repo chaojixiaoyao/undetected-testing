@@ -78,5 +78,7 @@ jobs:
     #  run: |
     #    python test_user_agent.py
     - name: Run python raw_uc_mode.py --debug
+      env:
+        url: ${{ secrets.url }}
       run: |
         python raw_uc_mode.py --debug

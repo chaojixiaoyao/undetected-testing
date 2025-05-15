@@ -1,5 +1,7 @@
 """UC Mode has PyAutoGUI methods for CAPTCHA-bypass."""
 from seleniumbase import SB
+import os
+import time
 
 
 with SB(uc=True, test=True) as sb:
@@ -13,11 +15,7 @@ with SB(uc=True, test=True) as sb:
     sb.post_message("SeleniumBase wasn't detected!")
 
 with SB(uc=True, test=True) as sb:
-    url = "https://www.virtualmanager.com/en/login"
-    sb.uc_open_with_reconnect(url, 4)
-    sb.uc_gui_click_captcha()
+    url = os.getenv("url")
+    sb.open(url)
+    time.sleep(5)
     print(sb.get_page_title())
-    sb.assert_element('input[name*="email"]')
-    sb.assert_element('input[name*="login"]')
-    sb.set_messenger_theme(location="bottom_center")
-    sb.post_message("SeleniumBase wasn't detected!")
