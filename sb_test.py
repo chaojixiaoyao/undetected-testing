@@ -12,6 +12,6 @@ def intercept_response(request, response):
 
 driver = Driver(wire=True)
 driver.response_interceptor = intercept_response
-# driver.get("https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&is_targeted_country=false&media_type=all&q=3D%20printer&search_type=keyword_unordered&source=nav-header")
-driver.get("https://www.baidu.com")
+driver.get("https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&is_targeted_country=false&media_type=all&q=3D%20printer&search_type=keyword_unordered&source=nav-header")
+# driver.get("https://www.baidu.com")
 driver.quit()
