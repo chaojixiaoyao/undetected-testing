@@ -76,4 +76,4 @@ jobs:
       env:
         url: ${{ secrets.url }}
       run: |
-        python raw_uc_mode.py --debug
+        python sb_test.py --debug
