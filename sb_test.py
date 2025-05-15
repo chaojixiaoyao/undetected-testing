@@ -4,11 +4,13 @@ def intercept_response(request, response):
     print("-----response.url------")
     print(request.headers)
     print("--------request.headers-------")
-    print(response.body)
-    # try:
-    #     print(response.body.decode('utf-8'))
-    # except UnicodeDecodeError:
-    #     pass
+    # print(response.body)
+    try:
+        print(response.body.decode('utf-8'))
+    except UnicodeDecodeError:
+        print(response.body.decode('latin1'))  # 使用latin1编码作为备选方案
+    except Exception as e:
+        print(f"Error decoding response body: {e}")
 
 driver = Driver(wire=True)
 driver.response_interceptor = intercept_response
