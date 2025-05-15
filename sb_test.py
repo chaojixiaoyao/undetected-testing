@@ -8,7 +8,8 @@ def intercept_response(request, response):
     try:
         print(response.body.decode('utf-8'))
     except UnicodeDecodeError:
-        print(response.body.decode('latin1'))  # 使用latin1编码作为备选方案
+        # print(response.body.decode('latin1'))  # 使用latin1编码作为备选方案
+        pass
     except Exception as e:
         print(f"Error decoding response body: {e}")
 
