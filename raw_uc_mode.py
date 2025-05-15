@@ -8,3 +8,4 @@ with SB(uc=True, test=True) as sb:
     sb.open(url)
     time.sleep(5)
     print(sb.get_page_title())
+    
