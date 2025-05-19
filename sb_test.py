@@ -11,7 +11,9 @@ with SB(wire=True, proxy="http://localhost:10808", headless=True) as sb:
                     request.response.headers['Content-Type']
                 )
 
-                if 'https://www.facebook.com/api/graphql/' == request.url:
+                print("request.url", request.url)
+
+                if 'https://www.facebook.com/api/graphql/' in request.url:
                     body = request.body.decode('utf-8')
                     data = json.loads(body)
                     print(data)
