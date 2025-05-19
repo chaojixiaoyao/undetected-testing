@@ -1,13 +1,17 @@
-from seleniumbase import Driver
+from seleniumbase import SB  
+import json
+  
+with SB(wire=True, proxy="http://localhost:10808", headless=True) as sb:  
+    sb.open("https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&is_targeted_country=false&media_type=all&q=printer&search_type=keyword_unordered")  
+    for request in sb.driver.requests:  
+        if request.response:
+                print(
+                    request.url,
+                    request.response.status_code,
+                    request.response.headers['Content-Type']
+                )
 
-def intercept_response(request, response):
-    print("-----response.url------")
-    print(response.headers)
-    print("--------request.headers-------")
-    print(response.body)
-
-driver = Driver(wire=True)
-driver.response_interceptor = intercept_response
-driver.get("https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&is_targeted_country=false&media_type=all&q=3D%20printer&search_type=keyword_unordered&source=nav-header")
-# driver.get("https://www.baidu.com")
-driver.quit()
+                if 'https://www.facebook.com/api/graphql/' == request.url:
+                    body = request.body.decode('utf-8')
+                    data = json.loads(body)
+                    print(data)
