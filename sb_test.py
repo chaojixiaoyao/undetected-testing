@@ -1,8 +1,9 @@
 from seleniumbase import SB  
 import json
   
-with SB(wire=True, proxy="http://localhost:10808", headless=True) as sb:  
-    sb.open("https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&is_targeted_country=false&media_type=all&q=printer&search_type=keyword_unordered")  
+with SB(wire=True) as sb:  
+    sb.open("https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&is_targeted_country=false&media_type=all&q=printer&search_type=keyword_unordered")
+    sb.scroll_to_bottom()
     for request in sb.driver.requests:  
         if request.response:
                 print(
